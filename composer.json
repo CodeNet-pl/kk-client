@@ -1,0 +1,17 @@
+{
+    "name": "codenet/kk-client",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "CodeNet\\KKClient\\Tests\\": "tests",
+            "CodeNet\\KKClient\\": "src"
+        }
+    }
+}

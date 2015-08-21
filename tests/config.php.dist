@@ -1,0 +1,6 @@
+<?php
+
+return [
+    'email' => 'test@example.com',
+    'password' => 'test',
+];
