@@ -12,6 +12,8 @@ use CodeNet\KKClient\Response\CheckPricesResponse;
 use CodeNet\KKClient\Response\CreateOrderResponse;
 use CodeNet\KKClient\Response\OrdersResponse;
 use CodeNet\KKClient\Response\ProfileResponse;
+use CodeNet\KKClient\SessionStorage\MemorySessionStorage;
+use CodeNet\KKClient\SessionStorage\NativeSessionStorage;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
@@ -44,21 +46,28 @@ class KKClient
     private $password;
 
     /**
-     * @var string
+     * @var SessionStorageInterface
      */
-    private $sessionId;
+    private $sessionStorage;
 
     /**
      * @var array
      */
     private $transactionHistory = [];
 
-    public function __construct($email, $password, $env = 'prod', $debug = false)
+    public function __construct($email, $password, SessionStorageInterface $sessionStorage = null, $env = 'prod', $debug = false)
     {
         if (!in_array($env, ['test', 'prod'], true)) {
             throw new InvalidArgumentException("Environment must be one of: prod, test");
         }
-
+        if (null === $sessionStorage) {
+            if (php_sapi_name() == "cli") {
+                $sessionStorage = new MemorySessionStorage();
+            } else {
+                $sessionStorage = new NativeSessionStorage();
+            }
+        }
+        $this->sessionStorage = $sessionStorage;
         $this->email = $email;
         $this->password = $password;
 
@@ -82,7 +91,7 @@ class KKClient
      */
     public function getSessionId()
     {
-        return $this->sessionId;
+        return $this->sessionStorage->getSessionId();
     }
 
     /**
@@ -90,12 +99,28 @@ class KKClient
      */
     public function setSessionId($sessionId)
     {
-        $this->sessionId = (string) $sessionId;
+        $this->sessionStorage->setSessionId((string) $sessionId);
+    }
+
+    /**
+     * @return SessionStorageInterface
+     */
+    public function getSessionStorage()
+    {
+        return $this->sessionStorage;
+    }
+
+    /**
+     * @param SessionStorageInterface $sessionStorage
+     */
+    public function setSessionStorage($sessionStorage)
+    {
+        $this->sessionStorage = $sessionStorage;
     }
 
     public function login()
     {
-        if (!$this->sessionId) {
+        if (!$this->getSessionId()) {
             $response = $this->post('login', ['email' => $this->email, 'password' => md5($this->password)]);
             $this->setSessionId($response->session);
         }
@@ -212,7 +237,7 @@ class KKClient
     {
         $this->login();
 
-        $data['session'] = $this->sessionId;
+        $data['session'] = $this->getSessionId();
 
         $xml = $this->post($path, $data);
 

@@ -6,6 +6,7 @@ use CodeNet\KKClient\Request\CheckPricesRequest;
 use CodeNet\KKClient\Request\InpostMachinesRequest;
 use CodeNet\KKClient\Resource\Courier;
 use CodeNet\KKClient\Resource\OrderDetails;
+use CodeNet\KKClient\SessionStorageInterface;
 use Psr\Http\Message\RequestInterface;
 use CodeNet\KKClient\Request\CreateOrderRequest;
 
@@ -21,21 +22,11 @@ class KKClientTest extends \PHPUnit_Framework_TestCase
      */
     protected $client;
 
-    /**
-     * @var string
-     */
-    protected $sessionId;
-
-
     protected function setUp()
     {
         $this->config = require __DIR__ . "/config.php";
-        $this->client = new KKClient($this->config['email'], $this->config['password'], 'test', true);
-        if ($this->sessionId) { // reuse existing session
-            $this->client->setSessionId($this->sessionId);
-        } else {
-            $this->client->login();
-            $this->sessionId = $this->client->getSessionId();
+        if (!$this->client) {
+            $this->client = new KKClient($this->config['email'], $this->config['password'], null, 'test', true);
         }
     }
 
