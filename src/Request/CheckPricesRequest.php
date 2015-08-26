@@ -72,6 +72,17 @@ class CheckPricesRequest extends Request
     }
 
     /**
+     * @param Package $package
+     */
+    public function removePackage(Package $package)
+    {
+        $index = array_search($package, $this->packages, true);
+        if (false !== $index) {
+            unset($this->packages[$index]);
+        }
+    }
+
+    /**
      * @return string
      */
     public function getReceiverCountry()
