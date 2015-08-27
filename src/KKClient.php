@@ -265,8 +265,18 @@ class KKClient
 
         $data['session'] = $this->getSessionId();
 
-        $xml = $this->post($path, $data);
+        try {
+            $xml = $this->post($path, $data);
 
-        return new $class($xml);
+            return new $class($xml);
+        } catch (\Exception $ex) {
+            if (strpos($ex->getMessage(), 'sesja') !== false) {
+                $this->setSessionId(null);
+
+                return $this->request($path, $data, $class);
+            }
+
+            throw $ex;
+        }
     }
 }
