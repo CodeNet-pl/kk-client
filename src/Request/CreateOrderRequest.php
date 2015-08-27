@@ -69,6 +69,11 @@ class CreateOrderRequest extends Request
     /**
      * @var string
      */
+    protected $receiverEmail;
+
+    /**
+     * @var string
+     */
     protected $comments;
 
     /**
@@ -366,5 +371,21 @@ class CreateOrderRequest extends Request
     public function setSenderMachineName($senderMachineName)
     {
         $this->senderMachineName = $senderMachineName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReceiverEmail()
+    {
+        return $this->receiverEmail;
+    }
+
+    /**
+     * @param string $receiverEmail
+     */
+    public function setReceiverEmail($receiverEmail)
+    {
+        $this->receiverEmail = $receiverEmail;
     }
 }
