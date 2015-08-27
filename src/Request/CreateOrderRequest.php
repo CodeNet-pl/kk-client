@@ -29,7 +29,22 @@ class CreateOrderRequest extends Request
     /**
      * @var string
      */
+    protected $pickupTimeFrom;
+
+    /**
+     * @var string
+     */
+    protected $pickupTimeTo;
+
+    /**
+     * @var string
+     */
     protected $deliveryDate;
+
+    /**
+     * @var string
+     */
+    protected $deliveryTime;
 
     /**
      * @var string
@@ -42,9 +57,39 @@ class CreateOrderRequest extends Request
     protected $courier;
 
     /**
+     * @var string
+     */
+    protected $senderMachineName;
+
+    /**
+     * @var string
+     */
+    protected $receiverMachineName;
+
+    /**
+     * @var string
+     */
+    protected $comments;
+
+    /**
      * @var Package[]
      */
     protected $packages = array();
+
+    /**
+     * @var boolean
+     */
+    protected $cod;
+
+    /**
+     * @var string
+     */
+    protected $codType;
+
+    /**
+     * @var float
+     */
+    protected $codAmount;
 
     /**
      * @return Courier
@@ -177,5 +222,149 @@ class CreateOrderRequest extends Request
     public function setPickupDate($pickupDate)
     {
         $this->pickupDate = $pickupDate;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isCod()
+    {
+        return $this->cod;
+    }
+
+    /**
+     * @param boolean $cod
+     */
+    public function setCod($cod)
+    {
+        $this->cod = $cod;
+    }
+
+    /**
+     * @return float
+     */
+    public function getCodAmount()
+    {
+        return $this->codAmount;
+    }
+
+    /**
+     * @param float $codAmount
+     */
+    public function setCodAmount($codAmount)
+    {
+        $this->codAmount = $codAmount;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodType()
+    {
+        return $this->codType;
+    }
+
+    /**
+     * @param string $codType
+     */
+    public function setCodType($codType)
+    {
+        $this->codType = $codType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param string $comments
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeliveryTime()
+    {
+        return $this->deliveryTime;
+    }
+
+    /**
+     * @param string $deliveryTime
+     */
+    public function setDeliveryTime($deliveryTime)
+    {
+        $this->deliveryTime = $deliveryTime;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPickupTimeFrom()
+    {
+        return $this->pickupTimeFrom;
+    }
+
+    /**
+     * @param string $pickupTimeFrom
+     */
+    public function setPickupTimeFrom($pickupTimeFrom)
+    {
+        $this->pickupTimeFrom = $pickupTimeFrom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPickupTimeTo()
+    {
+        return $this->pickupTimeTo;
+    }
+
+    /**
+     * @param string $pickupTimeTo
+     */
+    public function setPickupTimeTo($pickupTimeTo)
+    {
+        $this->pickupTimeTo = $pickupTimeTo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReceiverMachineName()
+    {
+        return $this->receiverMachineName;
+    }
+
+    /**
+     * @param string $receiverMachineName
+     */
+    public function setReceiverMachineName($receiverMachineName)
+    {
+        $this->receiverMachineName = $receiverMachineName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSenderMachineName()
+    {
+        return $this->senderMachineName;
+    }
+
+    /**
+     * @param string $senderMachineName
+     */
+    public function setSenderMachineName($senderMachineName)
+    {
+        $this->senderMachineName = $senderMachineName;
     }
 }
