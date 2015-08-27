@@ -10,6 +10,8 @@ use CodeNet\KKClient\Resource\OrderDetails;
 use CodeNet\KKClient\Response\CheckDataResponse;
 use CodeNet\KKClient\Response\CheckPricesResponse;
 use CodeNet\KKClient\Response\CreateOrderResponse;
+use CodeNet\KKClient\Response\InpostMachinesResponse;
+use CodeNet\KKClient\Response\OrderResponse;
 use CodeNet\KKClient\Response\OrdersResponse;
 use CodeNet\KKClient\Response\ProfileResponse;
 use CodeNet\KKClient\SessionStorage\MemorySessionStorage;
@@ -131,6 +133,12 @@ class KKClient
         return $this->transactionHistory;
     }
 
+    /**
+     * @param $path
+     * @param array $data
+     * @return \SimpleXMLElement
+     * @throws ClientErrorException
+     */
     private function post($path, array $data = [])
     {
         $response = $this->client->post($path . '.xml', [
@@ -213,6 +221,11 @@ class KKClient
         return $this->request('orders', [], $class);
     }
 
+    /**
+     * @param $id
+     * @return OrderResponse
+     * @throws InvalidArgumentException
+     */
     public function getOrder($id)
     {
         $id = (int) $id;
@@ -222,6 +235,12 @@ class KKClient
         return $this->request('order/' . $id, [], 'CodeNet\KKClient\Response\OrderResponse');
     }
 
+    /**
+     * @param $request
+     * @param string $class
+     * @return InpostMachinesResponse
+     * @throws InvalidArgumentException
+     */
     public function getInpostMachines($request, $class = 'CodeNet\KKClient\Response\InpostMachinesResponse')
     {
         if ($request instanceof InpostMachinesRequest) {
@@ -233,6 +252,13 @@ class KKClient
         return $this->request('inpostMachines', $request, $class);
     }
 
+    /**
+     * @param string $path
+     * @param array $data
+     * @param string $class
+     * @return Response
+     * @throws ClientErrorException
+     */
     public function request($path, array $data = [], $class = 'CodeNet\KKClient\Response')
     {
         $this->login();
