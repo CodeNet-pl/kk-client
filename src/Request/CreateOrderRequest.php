@@ -322,6 +322,16 @@ class CreateOrderRequest extends Request
      */
     public function setPickupTimeFrom($pickupTimeFrom)
     {
+        if (is_string($pickupTimeFrom) && strpos($pickupTimeFrom, ':') !== false) {
+            list($hour, $minute) = explode(':', $pickupTimeFrom);
+            if (strlen($hour) < 2) {
+                $hour = '0' . $hour;
+            }
+
+            $pickupTimeFrom = $hour . ':' . $minute;
+        } else {
+            $pickupTimeFrom = null;
+        }
         $this->pickupTimeFrom = $pickupTimeFrom;
     }
 
@@ -338,6 +348,16 @@ class CreateOrderRequest extends Request
      */
     public function setPickupTimeTo($pickupTimeTo)
     {
+        if (is_string($pickupTimeTo) && strpos($pickupTimeTo, ':') !== false) {
+            list($hour, $minute) = explode(':', $pickupTimeTo);
+            if (strlen($hour) < 2) {
+                $hour = '0' . $hour;
+            }
+
+            $pickupTimeTo = $hour . ':' . $minute;
+        } else {
+            $pickupTimeTo = null;
+        }
         $this->pickupTimeTo = $pickupTimeTo;
     }
 
