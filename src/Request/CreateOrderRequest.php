@@ -97,6 +97,11 @@ class CreateOrderRequest extends Request
     protected $codAmount;
 
     /**
+     * @var bool
+     */
+    protected $noCourierOrder;
+
+    /**
      * @return Courier
      */
     public function getCourier()
@@ -407,5 +412,21 @@ class CreateOrderRequest extends Request
     public function setReceiverEmail($receiverEmail)
     {
         $this->receiverEmail = $receiverEmail;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isNoCourierOrder()
+    {
+        return $this->noCourierOrder;
+    }
+
+    /**
+     * @param boolean $noCourierOrder
+     */
+    public function setNoCourierOrder($noCourierOrder)
+    {
+        $this->noCourierOrder = (bool) $noCourierOrder;
     }
 }
