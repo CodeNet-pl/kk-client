@@ -12,6 +12,8 @@ Below is the list of implemented API methods
 - /api/makeOrder
 - /api/orders
 - /api/inpostMachines
+- /api/label
+- /api/labelZebra
 
 Example usage
 ---

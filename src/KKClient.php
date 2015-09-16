@@ -226,13 +226,13 @@ class KKClient
      * @return OrderResponse
      * @throws InvalidArgumentException
      */
-    public function getOrder($id)
+    public function getOrder($id, $class = 'CodeNet\KKClient\Response\OrderResponse')
     {
         $id = (int) $id;
         if ($id <= 0) {
             throw new InvalidArgumentException("Expected order ID greater than zero");
         }
-        return $this->request('order/' . $id, [], 'CodeNet\KKClient\Response\OrderResponse');
+        return $this->request('order/' . $id, [], $class);
     }
 
     /**
@@ -250,6 +250,36 @@ class KKClient
             throw new InvalidArgumentException("Request should be an array or InpostMachinesRequest instance");
         }
         return $this->request('inpostMachines', $request, $class);
+    }
+
+    /**
+     * @param $id
+     * @param string $class
+     * @return Response
+     * @throws InvalidArgumentException
+     */
+    public function getLabel($id, $class = 'CodeNet\KKClient\Response\LabelResponse')
+    {
+        $id = (int) $id;
+        if ($id <= 0) {
+            throw new InvalidArgumentException("Expected order ID greater than zero");
+        }
+        return $this->request('label/' . $id, [], $class);
+    }
+
+    /**
+     * @param $id
+     * @param string $class
+     * @return Response
+     * @throws InvalidArgumentException
+     */
+    public function getLabelZebra($id, $class = 'CodeNet\KKClient\Response\LabelResponse')
+    {
+        $id = (int) $id;
+        if ($id <= 0) {
+            throw new InvalidArgumentException("Expected order ID greater than zero");
+        }
+        return $this->request('labelZebra/' . $id, [], $class);
     }
 
     /**
