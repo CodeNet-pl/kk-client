@@ -3,10 +3,8 @@ namespace CodeNet\KKClient\Resource;
 
 use CodeNet\KKClient\Resource;
 
-class OrderDetails extends Resource
+class OrderDetails extends BaseOrder
 {
-    use SenderInfoTrait;
-    use ReceiverInfoTrait;
 
     /**
      * @var integer
@@ -16,32 +14,12 @@ class OrderDetails extends Resource
     /**
      * @var string
      */
-    protected $senderMachineName;
-
-    /**
-     * @var string
-     */
-    protected $senderMachineDescription;
-
-    /**
-     * @var string
-     */
-    protected $receiverEmail;
-
-    /**
-     * @var string
-     */
-    protected $receiverMachineName;
-
-    /**
-     * @var string
-     */
     protected $receiverMachineDescription;
 
     /**
      * @var string
      */
-    protected $packageType;
+    protected $senderMachineDescription;
 
     /**
      * @var integer
@@ -56,57 +34,7 @@ class OrderDetails extends Resource
     /**
      * @var string
      */
-    protected $content;
-
-    /**
-     * @var string
-     */
-    protected $pickupTimeFrom;
-
-    /**
-     * @var string
-     */
-    protected $pickupTimeTo;
-
-    /**
-     * @var string
-     */
-    protected $pickupDate;
-
-    /**
-     * @var string
-     */
-    protected $deliveryDate;
-
-    /**
-     * @var string
-     */
-    protected $deliveryTime;
-
-    /**
-     * @var boolean
-     */
-    protected $cod;
-
-    /**
-     * @var float
-     */
-    protected $codAmount;
-
-    /**
-     * @var string
-     */
-    protected $codBankAccount;
-
-    /**
-     * @var string
-     */
     protected $codPayOutDate;
-
-    /**
-     * @var boolean
-     */
-    protected $insurance;
 
     /**
      * @var float
@@ -116,22 +44,7 @@ class OrderDetails extends Resource
     /**
      * @var string
      */
-    protected $comments;
-
-    /**
-     * @var Package[]
-     */
-    protected $packages;
-
-    /**
-     * @var string
-     */
     protected $services;
-
-    /**
-     * @var string
-     */
-    protected $courier;
 
     /**
      * @var float
@@ -176,22 +89,6 @@ class OrderDetails extends Resource
      * @var boolean
      */
     protected $labelZebraAvailable;
-
-    /**
-     * @return string
-     */
-    public function getCourier()
-    {
-        return $this->courier;
-    }
-
-    /**
-     * @param string $courier
-     */
-    public function setCourier($courier)
-    {
-        $this->courier = $courier;
-    }
 
     /**
      * @return \DateTime
@@ -279,102 +176,6 @@ class OrderDetails extends Resource
     /**
      * @return string
      */
-    public function getReceiverCompany()
-    {
-        return $this->receiverCompany;
-    }
-
-    /**
-     * @param string $receiverCompany
-     */
-    public function setReceiverCompany($receiverCompany)
-    {
-        $this->receiverCompany = $receiverCompany;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReceiverLastName()
-    {
-        return $this->receiverLastName;
-    }
-
-    /**
-     * @param string $receiverLastName
-     */
-    public function setReceiverLastName($receiverLastName)
-    {
-        $this->receiverLastName = $receiverLastName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReceiverName()
-    {
-        return $this->receiverName;
-    }
-
-    /**
-     * @param string $receiverName
-     */
-    public function setReceiverName($receiverName)
-    {
-        $this->receiverName = $receiverName;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isCod()
-    {
-        return $this->cod;
-    }
-
-    /**
-     * @param boolean $cod
-     */
-    public function setCod($cod)
-    {
-        $this->cod = (bool) $cod;
-    }
-
-    /**
-     * @return float
-     */
-    public function getCodAmount()
-    {
-        return $this->codAmount;
-    }
-
-    /**
-     * @param float $codAmount
-     */
-    public function setCodAmount($codAmount)
-    {
-        $this->codAmount = $codAmount;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCodBankAccount()
-    {
-        return $this->codBankAccount;
-    }
-
-    /**
-     * @param string $codBankAccount
-     */
-    public function setCodBankAccount($codBankAccount)
-    {
-        $this->codBankAccount = $codBankAccount;
-    }
-
-    /**
-     * @return string
-     */
     public function getCodPayOutDate()
     {
         return $this->codPayOutDate;
@@ -386,38 +187,6 @@ class OrderDetails extends Resource
     public function setCodPayOutDate($codPayOutDate)
     {
         $this->codPayOutDate = $codPayOutDate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getComments()
-    {
-        return $this->comments;
-    }
-
-    /**
-     * @param string $comments
-     */
-    public function setComments($comments)
-    {
-        $this->comments = $comments;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * @param string $content
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
     }
 
     /**
@@ -450,46 +219,6 @@ class OrderDetails extends Resource
     public function setDeclaredValue($declaredValue)
     {
         $this->declaredValue = $declaredValue;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDeliveryDate()
-    {
-        return $this->deliveryDate;
-    }
-
-    /**
-     * @param string $deliveryDate
-     */
-    public function setDeliveryDate($deliveryDate)
-    {
-        $this->deliveryDate = $deliveryDate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDeliveryTime()
-    {
-        return $this->deliveryTime;
-    }
-
-    /**
-     * @param string $deliveryTime
-     */
-    public function setDeliveryTime($deliveryTime)
-    {
-        $this->deliveryTime = $deliveryTime;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isInsurance()
-    {
-        return $this->insurance;
     }
 
     /**
@@ -583,37 +312,36 @@ class OrderDetails extends Resource
     /**
      * @return string
      */
-    public function getPackageType()
+    public function getReceiverMachineDescription()
     {
-        return $this->packageType;
+        return $this->receiverMachineDescription;
     }
 
     /**
-     * @param string $packageType
+     * @param string $receiverMachineDescription
      */
-    public function setPackageType($packageType)
+    public function setReceiverMachineDescription($receiverMachineDescription)
     {
-        $this->packageType = $packageType;
+        $this->receiverMachineDescription = $receiverMachineDescription;
     }
 
     /**
-     * @return Package[]
+     * @return Service
      */
-    public function getPackages()
+    public function getServices()
     {
-        return $this->packages;
+        return $this->services;
     }
 
     /**
-     * @param Package $package
+     * @param Service $service
      */
-    public function addPackage($package)
+    public function addService($service)
     {
-        if ($package instanceof \SimpleXMLElement) {
-            $package = new Package($package);
+        if (!$service instanceof Service) {
+            $service = new Service($service);
         }
-
-        $this->packages[] = $package;
+        $this->services[] = $service;
     }
 
     /**
@@ -629,87 +357,7 @@ class OrderDetails extends Resource
      */
     public function setPackagesNumber($packagesNumber)
     {
-        $this->packagesNumber = (int) $packagesNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPickupDate()
-    {
-        return $this->pickupDate;
-    }
-
-    /**
-     * @param string $pickupDate
-     */
-    public function setPickupDate($pickupDate)
-    {
-        $this->pickupDate = $pickupDate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPickupTimeFrom()
-    {
-        return $this->pickupTimeFrom;
-    }
-
-    /**
-     * @param string $pickupTimeFrom
-     */
-    public function setPickupTimeFrom($pickupTimeFrom)
-    {
-        $this->pickupTimeFrom = $pickupTimeFrom;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPickupTimeTo()
-    {
-        return $this->pickupTimeTo;
-    }
-
-    /**
-     * @param string $pickupTimeTo
-     */
-    public function setPickupTimeTo($pickupTimeTo)
-    {
-        $this->pickupTimeTo = $pickupTimeTo;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReceiverMachineDescription()
-    {
-        return $this->receiverMachineDescription;
-    }
-
-    /**
-     * @param string $receiverMachineDescription
-     */
-    public function setReceiverMachineDescription($receiverMachineDescription)
-    {
-        $this->receiverMachineDescription = $receiverMachineDescription;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReceiverMachineName()
-    {
-        return $this->receiverMachineName;
-    }
-
-    /**
-     * @param string $receiverMachineName
-     */
-    public function setReceiverMachineName($receiverMachineName)
-    {
-        $this->receiverMachineName = $receiverMachineName;
+        $this->packagesNumber = $packagesNumber;
     }
 
     /**
@@ -726,53 +374,5 @@ class OrderDetails extends Resource
     public function setSenderMachineDescription($senderMachineDescription)
     {
         $this->senderMachineDescription = $senderMachineDescription;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSenderMachineName()
-    {
-        return $this->senderMachineName;
-    }
-
-    /**
-     * @param string $senderMachineName
-     */
-    public function setSenderMachineName($senderMachineName)
-    {
-        $this->senderMachineName = $senderMachineName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getServices()
-    {
-        return $this->services;
-    }
-
-    /**
-     * @param string $services
-     */
-    public function setServices($services)
-    {
-        $this->services = $services;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReceiverEmail()
-    {
-        return $this->receiverEmail;
-    }
-
-    /**
-     * @param string $receiverEmail
-     */
-    public function setReceiverEmail($receiverEmail)
-    {
-        $this->receiverEmail = $receiverEmail;
     }
 }

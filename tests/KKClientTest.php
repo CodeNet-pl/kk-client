@@ -71,8 +71,8 @@ class KKClientTest extends \PHPUnit_Framework_TestCase
         $order = new CreateOrderRequest([
             'courier' => '5',
             'packageType' => 'paczka',
-            'pickupDate' => date('Y-m-d', strtotime('+3 day')),
-            'deliveryDate' => date('Y-m-d', strtotime('+4 days')),
+            'pickupDate' => '2099-01-01',
+            'deliveryDate' => '2099-01-03',
 
             'senderName' => 'Tester',
             'senderLastName' => 'Test',
@@ -108,8 +108,8 @@ class KKClientTest extends \PHPUnit_Framework_TestCase
         $order = new CreateOrderRequest([
             'courier' => '5',
             'packageType' => 'paczka',
-            'pickupDate' => date('Y-m-d', strtotime('+3 days')),
-            'deliveryDate' => date('Y-m-d', strtotime('+4 days')),
+            'pickupDate' => '2099-01-01',
+            'deliveryDate' => '2099-01-03',
 
             'senderName' => 'Tester2',
             'senderLastName' => 'Test2',
@@ -130,6 +130,9 @@ class KKClientTest extends \PHPUnit_Framework_TestCase
             'receiverCountry' => 'PL',
 
             'content' => 'Foo2',
+
+            'expressPlus' => 1,
+            'smsSendingNotification' => 1,
 
             'packages' => [
                 ['weight' => 1, 'width' => 1, 'length' => 1, 'height' => 1, 'unsortableShape' => 0],
@@ -162,6 +165,6 @@ class KKClientTest extends \PHPUnit_Framework_TestCase
 
         $response = $this->client->getInpostMachines($request);
 
-        dump($response);
+        $this->assertInstanceOf('CodeNet\KKClient\Response\InpostMachinesResponse', $response);
     }
 }

@@ -7,12 +7,12 @@ use CodeNet\KKClient\Response;
 class OrdersResponse extends Response
 {
     /**
-     * @var OrderResponse[]
+     * @var Order[]
      */
     protected $orders = array();
 
     /**
-     * @return OrderResponse[]
+     * @return Order[]
      */
     public function getOrders()
     {
