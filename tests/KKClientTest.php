@@ -30,6 +30,13 @@ class KKClientTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    public function testSessionInvalidation()
+    {
+        $this->client->setSessionId('FOO');
+        $this->client->getProfile();
+        $this->assertNotEquals('FOO', $this->client->getSessionId());
+    }
+
     public function testProfile()
     {
         $profile = $this->client->getProfile();
