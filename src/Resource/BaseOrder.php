@@ -89,11 +89,6 @@ class BaseOrder extends Resource
     protected $packages = array();
 
     /**
-     * @var Courier
-     */
-    protected $courier;
-
-    /**
      * @return string
      */
     public function getPackageType()
@@ -334,30 +329,6 @@ class BaseOrder extends Resource
         if (false !== $index) {
             unset($this->packages[$index]);
         }
-    }
-
-
-    /**
-     * @return Courier
-     */
-    public function getCourier()
-    {
-        return $this->courier;
-    }
-
-    /**
-     * @param mixed $courier
-     */
-    public function setCourier($courier)
-    {
-        if (!$courier instanceof Courier) {
-            if (is_array($courier)) {
-                $courier = new Courier($courier);
-            } else {
-                $courier = new Courier(['id' => $courier]);
-            }
-        }
-        $this->courier = $courier;
     }
 
     /**

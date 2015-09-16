@@ -14,6 +14,11 @@ class OrderDetails extends BaseOrder
     /**
      * @var string
      */
+    protected $courier;
+
+    /**
+     * @var string
+     */
     protected $receiverMachineDescription;
 
     /**
@@ -89,6 +94,22 @@ class OrderDetails extends BaseOrder
      * @var boolean
      */
     protected $labelZebraAvailable;
+
+    /**
+     * @return string
+     */
+    public function getCourier()
+    {
+        return $this->courier;
+    }
+
+    /**
+     * @param string $courier
+     */
+    public function setCourier($courier)
+    {
+        $this->courier = $courier;
+    }
 
     /**
      * @return \DateTime

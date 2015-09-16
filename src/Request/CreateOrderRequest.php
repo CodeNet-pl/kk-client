@@ -3,6 +3,7 @@ namespace CodeNet\KKClient\Request;
 
 use CodeNet\KKClient\Request;
 use CodeNet\KKClient\Resource\BaseOrder;
+use CodeNet\KKClient\Resource\Courier;
 
 class CreateOrderRequest extends BaseOrder
 {
@@ -15,6 +16,11 @@ class CreateOrderRequest extends BaseOrder
      * @var string
      */
     protected $codType;
+
+    /**
+     * @var Courier
+     */
+    protected $courier;
 
     /**
      * @var boolean
@@ -190,6 +196,30 @@ class CreateOrderRequest extends BaseOrder
      * @var boolean
      */
     protected $noCourierOrder;
+
+
+    /**
+     * @return Courier
+     */
+    public function getCourier()
+    {
+        return $this->courier;
+    }
+
+    /**
+     * @param mixed $courier
+     */
+    public function setCourier($courier)
+    {
+        if (!$courier instanceof Courier) {
+            if (is_array($courier)) {
+                $courier = new Courier($courier);
+            } else {
+                $courier = new Courier(['id' => $courier]);
+            }
+        }
+        $this->courier = $courier;
+    }
 
     /**
      * @return boolean
