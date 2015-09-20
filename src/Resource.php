@@ -26,18 +26,21 @@ class Resource
                 continue;
             }
 
+            $setter = "set" . ucfirst($name);
+            $adder  = "add" . rtrim(ucfirst($name), 's');
+
             /**
              * @var \SimpleXMLElement|array $value
              */
             if (is_array($value) || $value instanceof \SimpleXMLElement && $value->count()) {
-                if (method_exists($this, "set" . ucfirst($name))) {
-                    $this->{"set" . ucfirst($name)}($value);
+                if (method_exists($this, $setter)) {
+                    $this->$setter($value);
                 } else {
                     foreach ($value as $item) {
-                        $this->{"add" . rtrim(ucfirst($name), 's')}($item);
+                        $this->$adder($item);
                     }
                 }
-            } else {
+            } elseif (!method_exists($this, $adder)) {
                 $this->{"set" . ucfirst($name)}((string) $value);
             }
         }
