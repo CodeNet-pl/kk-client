@@ -22,7 +22,7 @@ class Resource
             throw new InvalidArgumentException('Data to hydrate should be an array or instance of SimpleXMLElement');
         }
         foreach ($data as $name => $value) {
-            if (in_array($name, ['session'])) {
+            if (in_array($name, ['session']) || !property_exists($this, $name)) {
                 continue;
             }
 
