@@ -42,11 +42,6 @@ class OrderDetails extends BaseOrder
     protected $codPayOutDate;
 
     /**
-     * @var float
-     */
-    protected $declaredValue;
-
-    /**
      * @var string
      */
     protected $services;
@@ -224,22 +219,6 @@ class OrderDetails extends BaseOrder
     public function setCourierOrderNumber($courierOrderNumber)
     {
         $this->courierOrderNumber = $courierOrderNumber;
-    }
-
-    /**
-     * @return float
-     */
-    public function getDeclaredValue()
-    {
-        return $this->declaredValue;
-    }
-
-    /**
-     * @param float $declaredValue
-     */
-    public function setDeclaredValue($declaredValue)
-    {
-        $this->declaredValue = $declaredValue;
     }
 
     /**

@@ -39,6 +39,11 @@ class BaseOrder extends Resource
     protected $insurance;
 
     /**
+     * @var float
+     */
+    protected $declaredValue;
+
+    /**
      * @var string
      */
     protected $deliveryDate;
@@ -360,7 +365,23 @@ class BaseOrder extends Resource
      */
     public function setInsurance($insurance)
     {
-        $this->insurance = $insurance;
+        $this->insurance = (bool) $insurance;
+    }
+
+    /**
+     * @return float
+     */
+    public function getDeclaredValue()
+    {
+        return $this->declaredValue;
+    }
+
+    /**
+     * @param float $declaredValue
+     */
+    public function setDeclaredValue($declaredValue)
+    {
+        $this->declaredValue = floatval($declaredValue);
     }
 
     /**
