@@ -203,6 +203,16 @@ class BaseOrder extends Resource
      */
     public function setDeliveryTime($deliveryTime)
     {
+        if (is_string($deliveryTime) && strpos($deliveryTime, ':') !== false) {
+            list($hour, $minute) = explode(':', $deliveryTime);
+            if (strlen($hour) < 2) {
+                $hour = '0' . $hour;
+            }
+
+            $deliveryTime = $hour . ':' . $minute;
+        } else {
+            $deliveryTime = null;
+        }
         $this->deliveryTime = $deliveryTime;
     }
 
