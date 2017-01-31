@@ -74,7 +74,8 @@ class KKClient
         $this->password = $password;
 
         $params = [
-            'base_uri' => $this->{$env . 'Url'}
+            'base_uri' => $this->{$env . 'Url'},
+            'verify' => false,
         ];
 
         if ($debug) {
